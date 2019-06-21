@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Traits\EntityTrait;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,12 +15,15 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="users")
  * @package App\Entity
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({
- *     "delivery_men" = "App\Entity\DeliveryMan"})
+ *     "delivery_men" = "App\Entity\DeliveryMan",
+ *     "client" = "App\Entity\Client"
+ * })
  */
-Abstract class User
+Abstract class User implements UserInterface, EquatableInterface
 {
     use EntityTrait;
 
@@ -151,5 +156,63 @@ Abstract class User
         $this->roles = $roles;
     }
 
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
 
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials(): void
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * The equality comparison should neither be done by referential equality
+     * nor by comparing identities (i.e. getId() === getId()).
+     *
+     * However, you do not need to compare every attribute, but only those that
+     * are relevant for assessing whether re-authentication is required.
+     *
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function isEqualTo(UserInterface $user): bool
+    {
+        if (!$user instanceof self) {
+            return false;
+        }
+
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+
+        if ($this->email !== $user->getEmail()) {
+            return false;
+        }
+
+        return true;
+    }
 }

@@ -1,0 +1,32 @@
+products:
+  dish1:
+    type: "dish"
+    name: "Curabitur a felis"
+    description: "Mauris lobortis tellus nisl, vitae interdum nisl eleifend id. In sodales lorem accumsan arcu venenatis
+    , sit amet pharetra libero lobortis. Sed sagittis orci sit amet sodales tincidunt. Quisque sed felis sed velit
+    posuere feugiat. Nulla facilisi. Suspendisse condimentum volutpat ligula sit amet facilisis. Cras tortor nulla,
+    convallis vel est volutpat, cursus bibendum purus. Donec ac quam odio."
+    price: 10
+  dish2:
+    type: "dish"
+    name: "Quisque a sagittis velit"
+    description: "Mauris lobortis tellus nisl, vitae interdum nisl eleifend id. In sodales lorem accumsan arcu venenatis
+        , sit amet pharetra libero lobortis. Sed sagittis orci sit amet sodales tincidunt. Quisque sed felis sed velit
+        posuere feugiat. Nulla facilisi. Suspendisse condimentum volutpat ligula sit amet facilisis. Cras tortor nulla,
+        convallis vel est volutpat, cursus bibendum purus. Donec ac quam odio."
+    price: 10
+  desert1:
+    type: "dessert"
+    name: "Donec volutpat suscipit"
+    description: "Donec nec auctor elit, sit amet convallis libero. Proin dignissim enim ultricies ex venenatis
+    consequat. Aenean eget vestibulum neque. Nunc nisl enim, pellentesque nec imperdiet vel, interdum sit amet metus.
+    Interdum et malesuada fames ac ante ipsum primis in faucibus."
+    price: 5
+  desert2:
+    type: "dessert"
+    name: "Sed quam ante, porta vitae"
+    description: "Vivamus eget luctus arcu. Suspendisse id dui non arcu vulputate condimentum ut eget nunc. Fusce
+    ultrices magna ut commodo interdum. Cras in velit ullamcorper, semper risus at, volutpat velit. Suspendisse lobortis
+    non nisl sed ultrices. In vestibulum tincidunt est, nec pretium sapien molestie maximus. Quisque eget odio et arcu
+    ullamcorper viverra.."
+    price: 5

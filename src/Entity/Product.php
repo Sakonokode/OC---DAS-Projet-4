@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Product
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  * @ORM\Table(name="products")
+ * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
 class Product
@@ -36,9 +37,8 @@ class Product
     private $description;
 
     /**
-     * @var null|User $chef
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(name="chef_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @var null|Client $chef
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client")
      */
     private $chef;
 
@@ -97,17 +97,17 @@ class Product
     }
 
     /**
-     * @return User|null
+     * @return Client|null
      */
-    public function getChef(): ?User
+    public function getChef(): ?Client
     {
         return $this->chef;
     }
 
     /**
-     * @param User|null $chef
+     * @param Client|null $chef
      */
-    public function setChef(?User $chef): void
+    public function setChef(?Client $chef): void
     {
         $this->chef = $chef;
     }

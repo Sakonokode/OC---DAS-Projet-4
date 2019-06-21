@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class CartItem
  * @ORM\Entity(repositoryClass="App\Repository\CartItemRepository")
- * @ORM\Table(name="cart_items")
  * @package App\Entity
  */
 class CartItem
