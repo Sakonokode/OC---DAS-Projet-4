@@ -36,5 +36,6 @@ Diagrammes de cas d’utilisations (création d’une commande, ajout d’un pla
     cd OC---DAS-Projet-4
     make init
     
-## Diagrammes
-Les diagrammes uml sont dans le dossier "uml".
+## Diagrammes et Database
+Les diagrammes uml sont dans le dossier : "uml".
+La database se trouve a la racine du projet : "dump.sql"

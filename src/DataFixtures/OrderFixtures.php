@@ -57,7 +57,6 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
             UserFixtures::class,
             ProductFixtures::class,
             ItemFixtures::class,
-            CartFixtures::class,
             PaymentFixtures::class,
         ];
     }
