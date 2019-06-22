@@ -9,7 +9,6 @@ use DateTime;
 
 /**
  * Trait EntityTrait
- * @ORM\HasLifecycleCallbacks()
  * @package App\Traits
  */
 trait EntityTrait

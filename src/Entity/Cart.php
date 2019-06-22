@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Class Cart
  * @ORM\Entity(repositoryClass="App\Repository\CartRepository")
  * @ORM\Table(name="carts")
+ * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
 class Cart
@@ -19,48 +20,50 @@ class Cart
     use EntityTrait;
 
     /**
-     * @var ArrayCollection $orderItems
-     * @ORM\ManyToMany(targetEntity="App\Entity\CartItem")
-     * @ORM\JoinTable(name="cart_items",
-     *      joinColumns={@ORM\JoinColumn(name="cart_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="cart_item_id", referencedColumnName="id", unique=true)}
-     *      )
+     * @var Item[]|ArrayCollection $cartItems
+     * @ORM\ManyToMany(targetEntity="App\Entity\Item")
+     * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
      */
-    private $orderItems;
+    private $cartItems;
+
+    public function __construct()
+    {
+        $this->cartItems = new ArrayCollection();
+    }
 
     /**
-     * @param CartItem $cartItem
+     * @param Item $cartItem
      */
-    public function addCartItem(CartItem $cartItem): void
+    public function addCartItem(Item $cartItem): void
     {
-        if (!$this->orderItems->contains($cartItem)) {
-            $this->orderItems->add($cartItem);
+        if (!$this->cartItems->contains($cartItem)) {
+            $this->cartItems->add($cartItem);
         }
     }
 
     /**
-     * @param CartItem $cartItem
+     * @param Item $cartItem
      */
-    public function removeCartItem(CartItem $cartItem): void
+    public function removeCartItem(Item $cartItem): void
     {
-        if ($this->orderItems->contains($cartItem)) {
-            $this->orderItems->removeElement($cartItem);
+        if ($this->cartItems->contains($cartItem)) {
+            $this->cartItems->removeElement($cartItem);
         }
     }
 
     /**
-     * @return ArrayCollection
+     * @return Item[]|ArrayCollection
      */
-    public function getOrderItems(): ArrayCollection
+    public function getCartItems()
     {
-        return $this->orderItems;
+        return $this->cartItems;
     }
 
     /**
-     * @param ArrayCollection $orderItems
+     * @param Item[]|ArrayCollection $cartItems
      */
-    public function setOrderItems(ArrayCollection $orderItems): void
+    public function setCartItems($cartItems): void
     {
-        $this->orderItems = $orderItems;
+        $this->cartItems = $cartItems;
     }
 }

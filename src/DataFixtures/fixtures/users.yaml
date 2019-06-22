@@ -1,0 +1,52 @@
+users:
+  user-1:
+    email: "user-1@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+      - "ROLE_CHEF"
+    reference: 12345
+    status:
+    lat:
+    lng:
+    dish-total:
+    dish-current:
+    dessert-current:
+    dessert-total:
+  user-2:
+    email: "user-2@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+    status:
+    lat:
+    lng:
+    dish-total:
+    dish-current:
+    dessert-current:
+    dessert-total:
+  user-3:
+    email: "user-3@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+      - "ROLE_DELIVERY_MAN"
+    status: "available"
+    lat: 48.867598
+    lng: 2.382460
+    dish-total: 6
+    dish-current: 2
+    dessert-current: 3
+    dessert-total: 6
+  admin:
+    email: "admin@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_ADMIN"
+    status:
+    lat:
+    lng:
+    dish-total:
+    dish-current:
+    dessert-current:
+    dessert-total:

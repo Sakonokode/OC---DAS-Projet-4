@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Order
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
  * @ORM\Table(name="orders")
+ * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
 class Order
@@ -31,8 +32,8 @@ class Order
     private $user;
 
     /**
-     * @var null|DeliveryMan $deliveryMan
-     * @ORM\OneToOne(targetEntity="App\Entity\DeliveryMan", cascade={"persist"})
+     * @var null|User $deliveryMan
+     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
      * @ORM\JoinColumn(name="delivery_man_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $deliveryMan;
@@ -90,17 +91,17 @@ class Order
     }
 
     /**
-     * @return DeliveryMan|null
+     * @return User|null
      */
-    public function getDeliveryMan(): ?DeliveryMan
+    public function getDeliveryMan(): ?User
     {
         return $this->deliveryMan;
     }
 
     /**
-     * @param DeliveryMan|null $deliveryMan
+     * @param User|null $deliveryMan
      */
-    public function setDeliveryMan(?DeliveryMan $deliveryMan): void
+    public function setDeliveryMan(?User $deliveryMan): void
     {
         $this->deliveryMan = $deliveryMan;
     }

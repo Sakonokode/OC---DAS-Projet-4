@@ -37,8 +37,8 @@ class Product
     private $description;
 
     /**
-     * @var null|Client $chef
-     * @ORM\ManyToOne(targetEntity="App\Entity\Client")
+     * @var null|User $chef
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      */
     private $chef;
 
@@ -97,17 +97,17 @@ class Product
     }
 
     /**
-     * @return Client|null
+     * @return User|null
      */
-    public function getChef(): ?Client
+    public function getChef(): ?User
     {
         return $this->chef;
     }
 
     /**
-     * @param Client|null $chef
+     * @param User|null $chef
      */
-    public function setChef(?Client $chef): void
+    public function setChef(?User $chef): void
     {
         $this->chef = $chef;
     }

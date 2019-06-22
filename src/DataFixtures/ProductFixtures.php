@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\Client;
+use App\Entity\User;
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -59,8 +59,8 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setName($name);
         $product->setDescription($description);
         $product->setPrice($price);
-        /** @var Client $chef */
-        $chef = $this->getReference(ClientFixtures::CHEF_REFERENCE);
+        /** @var User $chef */
+        $chef = $this->getReference(UserFixtures::CHEF_REFERENCE);
         $product->setChef($chef);
 
         return $product;
@@ -69,7 +69,7 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            ClientFixtures::class,
+            UserFixtures::class,
         ];
     }
 }

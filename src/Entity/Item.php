@@ -9,15 +9,18 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class CartItem
- * @ORM\Entity(repositoryClass="App\Repository\CartItemRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
+ * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-class CartItem
+class Item
 {
     use EntityTrait;
 
     /**
-     * @var Product $product
+     * @var null|Product $product
+     * @ORM\OneToOne(targetEntity="App\Entity\Product", cascade={"persist"})
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $product;
 
@@ -26,6 +29,22 @@ class CartItem
      * @ORM\Column(type="integer", nullable=true)
      */
     private $number;
+
+    /**
+     * @return Product|null
+     */
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product|null $product
+     */
+    public function setProduct(?Product $product): void
+    {
+        $this->product = $product;
+    }
 
     /**
      * @return int|null

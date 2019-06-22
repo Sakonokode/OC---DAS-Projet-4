@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Payment
  * @ORM\Entity(repositoryClass="App\Repository\PaymentRepository")
  * @ORM\Table(name="payments")
+ * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
 class Payment
@@ -19,7 +20,7 @@ class Payment
 
     /**
      * @var null|float $total
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $total;
 
