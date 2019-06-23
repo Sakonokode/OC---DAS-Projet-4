@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Order</th>
+            <th>Client</th>
+            <th>Delivery Address</th>
+            <th>Cart Products</th>
+            <th>Total</th>
+            <th>Delivery Man</th>
+            <th>Status</th>
+            <th>Payment</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.user.email }}</td>
+                <td>{{ order.deliveryAddress }}</td>
+                <td>
+                    {% for item in order.cart.cartItems %}
+                        {{ item.product.name ~ ' (x' ~ item.number ~ ')'}}
+                        <br/>
+                    {% endfor %}
+                </td>
+                <td>{{ order.payment.total ~ ' €'}}</td>
+                <td>{{ order.deliveryMan.email }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.payment.status }}</td>
+                <td>{{ order.created | date("d/m/Y") ~ ' a ' ~ order.created | date("H:i") }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

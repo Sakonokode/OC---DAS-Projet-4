@@ -1,32 +1,21 @@
 products:
   dish1:
     type: "dish"
-    name: "Curabitur a felis"
-    description: "Mauris lobortis tellus nisl, vitae interdum nisl eleifend id. In sodales lorem accumsan arcu venenatis
-    , sit amet pharetra libero lobortis. Sed sagittis orci sit amet sodales tincidunt. Quisque sed felis sed velit
-    posuere feugiat. Nulla facilisi. Suspendisse condimentum volutpat ligula sit amet facilisis. Cras tortor nulla,
-    convallis vel est volutpat, cursus bibendum purus. Donec ac quam odio."
+    name: "Salade froide de quinoa au céleri"
+    description: "J'adore cette recette toute simple et l'alliance du céleri, du persil, du miel et du bouillon de poule. A essayer !"
     price: 10
   dish2:
     type: "dish"
-    name: "Quisque a sagittis velit"
-    description: "Mauris lobortis tellus nisl, vitae interdum nisl eleifend id. In sodales lorem accumsan arcu venenatis
-        , sit amet pharetra libero lobortis. Sed sagittis orci sit amet sodales tincidunt. Quisque sed felis sed velit
-        posuere feugiat. Nulla facilisi. Suspendisse condimentum volutpat ligula sit amet facilisis. Cras tortor nulla,
-        convallis vel est volutpat, cursus bibendum purus. Donec ac quam odio."
+    name: "Haricots plats (coco) pimentés"
+    description: "A servir avec du riz, ou du poisson, ou les deux. Attention, les piments oiseaux sont forts et plus on les cuit plus ils sont forts."
     price: 10
   desert1:
     type: "dessert"
-    name: "Donec volutpat suscipit"
-    description: "Donec nec auctor elit, sit amet convallis libero. Proin dignissim enim ultricies ex venenatis
-    consequat. Aenean eget vestibulum neque. Nunc nisl enim, pellentesque nec imperdiet vel, interdum sit amet metus.
-    Interdum et malesuada fames ac ante ipsum primis in faucibus."
+    name: "Verrines trois chocolats"
+    description: "Imaginez, 3 chocolats, 3 couches, 3 textures... 3 formes de rêves qui se superposent pour former la gourmandise suprême."
     price: 5
   desert2:
     type: "dessert"
-    name: "Sed quam ante, porta vitae"
-    description: "Vivamus eget luctus arcu. Suspendisse id dui non arcu vulputate condimentum ut eget nunc. Fusce
-    ultrices magna ut commodo interdum. Cras in velit ullamcorper, semper risus at, volutpat velit. Suspendisse lobortis
-    non nisl sed ultrices. In vestibulum tincidunt est, nec pretium sapien molestie maximus. Quisque eget odio et arcu
-    ullamcorper viverra.."
+    name: "Tarte poire-chocolat"
+    description: "Un dessert facile facile mais trop trop delicieux."
     price: 5

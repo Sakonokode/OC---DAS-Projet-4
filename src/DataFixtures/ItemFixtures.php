@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\Cart;
 use App\Entity\Item;
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class ItemFixtures
@@ -17,31 +17,22 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 final class ItemFixtures extends Fixture implements DependentFixtureInterface
 {
-
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager): void
     {
-        $cart = new Cart();
+        $items = Yaml::parseFile(__DIR__ . '/fixtures/items.yaml');
+
         $repository = $manager->getRepository(Product::class);
-        $number = 4;
 
-        /** @var Product $dish */
-        $dish = $repository->find(1);
+        foreach ($items['items'] as $itemRef => $item) {
 
-        /** @var Product $dessert */
-        $dessert = $repository->find(3);
+            $product = $repository->find($item['product']);
+            $entity  = $this->instantiate($product, $item['number']);
 
-        $item1  = $this->instantiate($dish, $number);
-        $item2  = $this->instantiate($dessert, $number);
-
-        $cart->addCartItem($item1);
-        $cart->addCartItem($item2);
-
-        $manager->persist($item1);
-        $manager->persist($item2);
-        $manager->persist($cart);
+            $manager->persist($entity);
+        }
 
         $manager->flush();
     }

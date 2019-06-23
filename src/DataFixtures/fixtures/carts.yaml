@@ -1,0 +1,25 @@
+carts:
+  cart1:
+    cart-items:
+      - "1"
+      - "3"
+  cart2:
+    cart-items:
+      - "2"
+      - "4"
+  cart3:
+    cart-items:
+      - "1"
+      - "2"
+  cart4:
+    cart-items:
+      - "1"
+      - "4"
+  cart5:
+    cart-items:
+      - "2"
+      - "3"
+  cart6:
+    cart-items:
+      - "1"
+      - "2"

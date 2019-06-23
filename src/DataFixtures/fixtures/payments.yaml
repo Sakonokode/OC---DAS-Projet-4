@@ -1,0 +1,19 @@
+payments:
+  payment1:
+    total: 35.00
+    status: "Success"
+  payment2:
+    total: 50.00
+    status: "Success"
+  payment3:
+    total: 50.00
+    status: "Success"
+  payment4:
+    total: 40.00
+    status: "Success"
+  payment5:
+    total: 45.00
+    status: "Success"
+  payment6:
+    total: 55.00
+    status: "Success"

@@ -11,6 +11,7 @@ use App\Entity\Cart;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class OrderFixtures
@@ -29,19 +30,26 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
         $paymentRepository = $manager->getRepository(Payment::class);
         $cartRepository = $manager->getRepository(Cart::class);
 
-        $client = $userRepository->find(2);
-        $deliveryMan = $userRepository->find(3);
-        $payment = $paymentRepository->find(1);
-        $cart = $cartRepository->find(1);
+        $orders = Yaml::parseFile(__DIR__ . '/fixtures/orders.yaml');
 
-        $order = new Order();
-        $order->setDeliveryAddress('9 Boulevard de Belleville, 75011 Paris');
-        $order->setUser($client);
-        $order->setDeliveryMan($deliveryMan);
-        $order->setPayment($payment);
-        $order->setCart($cart);
-        $order->setStatus('order complete');
-        $manager->persist($order);
+        foreach ($orders['orders'] as $orderRef => $order) {
+
+            $client = $userRepository->find($order['user']);
+            $deliveryMan = $userRepository->find($order['delivery-man']);
+            $payment = $paymentRepository->find($order['payment']);
+            $cart = $cartRepository->find($order['cart']);
+
+            $entity = new Order();
+            $entity->setDeliveryAddress($order['delivery-address']);
+            $entity->setUser($client);
+            $entity->setDeliveryMan($deliveryMan);
+            $entity->setPayment($payment);
+            $entity->setCart($cart);
+            $entity->setStatus($order['status']);
+
+            $manager->persist($entity);
+        }
+
         $manager->flush();
     }
 

@@ -26,15 +26,13 @@ class Order
 
     /**
      * @var null|User $user
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      */
     private $user;
 
     /**
      * @var null|User $deliveryMan
-     * @ORM\OneToOne(targetEntity="App\Entity\User", cascade={"persist"})
-     * @ORM\JoinColumn(name="delivery_man_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      */
     private $deliveryMan;
 

@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\Payment;
+use App\Entity\Cart;
+use App\Entity\Item;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class PaymentFixtures
+ * Class CartFixtures
  * @package App\DataFixtures
  */
-class PaymentFixtures extends Fixture implements DependentFixtureInterface
+class CartFixtures extends Fixture implements DependentFixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -23,13 +24,17 @@ class PaymentFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        $payments = Yaml::parseFile(__DIR__ . '/fixtures/payments.yaml');
+        $carts = Yaml::parseFile(__DIR__ . '/fixtures/carts.yaml');
+        $itemRepository = $manager->getRepository(Item::class);
 
-        foreach ($payments['payments'] as $paymentRef => $payment) {
+        foreach ($carts['carts'] as $cartRef => $cart) {
 
-            $entity = new Payment();
-            $entity->setStatus($payment['status']);
-            $entity->setTotal($payment['total']);
+            $entity = new Cart();
+
+            foreach ($cart['cart-items'] as $item) {
+                $cartItem = $itemRepository->find($item);
+                $entity->addCartItem($cartItem);
+            }
 
             $manager->persist($entity);
         }
