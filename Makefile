@@ -1,6 +1,7 @@
 init:
 	composer install
 	make create-db
+	php bin/console server:run
 
 create-db:
 	php bin/console d:d:c --if-not-exists

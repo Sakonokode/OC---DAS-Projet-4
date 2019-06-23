@@ -37,5 +37,6 @@ Diagrammes de cas d’utilisations (création d’une commande, ajout d’un pla
     make init
     
 ## Diagrammes et Database
-Les diagrammes uml sont dans le dossier : "uml".
-La database se trouve a la racine du projet : "dump.sql"
+* Les diagrammes uml sont dans le dossier : "uml".
+* La database se trouve a la racine du projet : "dump.sql".
+* Une vue de la table "orders" : http://localhost:8000/orders
