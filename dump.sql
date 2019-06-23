@@ -39,7 +39,7 @@ CREATE TABLE `cart_item` (
 
 LOCK TABLES `cart_item` WRITE;
 /*!40000 ALTER TABLE `cart_item` DISABLE KEYS */;
-INSERT INTO `cart_item` VALUES (1,1),(1,2);
+INSERT INTO `cart_item` VALUES (1,1),(1,3),(2,2),(2,4),(3,1),(3,2),(4,1),(4,4),(5,2),(5,3),(6,1),(6,2);
 /*!40000 ALTER TABLE `cart_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `carts` (
   `updated` datetime NOT NULL,
   `deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL);
+INSERT INTO `carts` VALUES (1,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(2,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(3,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(4,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(5,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(6,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL);
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_1F1B251E4584665A` (`product_id`),
   CONSTRAINT `FK_1F1B251E4584665A` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (1,1,4,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL),(2,3,4,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL);
+INSERT INTO `item` VALUES (1,1,3,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(2,2,4,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(3,3,1,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(4,4,2,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL);
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,15 +118,15 @@ CREATE TABLE `orders` (
   `updated` datetime NOT NULL,
   `deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_E52FFDEEA76ED395` (`user_id`),
-  UNIQUE KEY `UNIQ_E52FFDEEFD128646` (`delivery_man_id`),
   UNIQUE KEY `UNIQ_E52FFDEE4C3A3BB` (`payment_id`),
   UNIQUE KEY `UNIQ_E52FFDEE1AD5CDBF` (`cart_id`),
+  KEY `IDX_E52FFDEEA76ED395` (`user_id`),
+  KEY `IDX_E52FFDEEFD128646` (`delivery_man_id`),
   CONSTRAINT `FK_E52FFDEE1AD5CDBF` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_E52FFDEE4C3A3BB` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_E52FFDEEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_E52FFDEEFD128646` FOREIGN KEY (`delivery_man_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `FK_E52FFDEEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `FK_E52FFDEEFD128646` FOREIGN KEY (`delivery_man_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +135,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,2,3,1,1,'9 Boulevard de Belleville, 75011 Paris','order complete','2019-06-23 00:19:21','2019-06-23 00:19:21',NULL);
+INSERT INTO `orders` VALUES (1,2,3,1,1,'119 Avenue de Clichy, 75017 Paris','Order Complete','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(2,2,5,2,2,'23 Rue Damrémont, 75018 Paris','Order Complete','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(3,2,5,3,3,'2 Rue Ronsard, 75018 Paris','Order Complete','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(4,4,3,4,4,'12 Rue de la Fidélité, 75010 Paris','Order Complete','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(5,4,3,5,5,'1 Boulevard de Strasbourg, 75010 Paris','Order Complete','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(6,4,3,6,6,'10 Rue Hérold, 75001 Paris','Order Complete','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +154,7 @@ CREATE TABLE `payments` (
   `updated` datetime NOT NULL,
   `deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `payments` (
 
 LOCK TABLES `payments` WRITE;
 /*!40000 ALTER TABLE `payments` DISABLE KEYS */;
-INSERT INTO `payments` VALUES (1,15,'payment success','2019-06-23 00:19:21','2019-06-23 00:19:21',NULL);
+INSERT INTO `payments` VALUES (1,35,'Success','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(2,50,'Success','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(3,50,'Success','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(4,40,'Success','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(5,45,'Success','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(6,55,'Success','2019-06-23 14:36:46','2019-06-23 14:36:46',NULL);
 /*!40000 ALTER TABLE `payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,1,'dish','Curabitur a felis','Mauris lobortis tellus nisl, vitae interdum nisl eleifend id. In sodales lorem accumsan arcu venenatis , sit amet pharetra libero lobortis. Sed sagittis orci sit amet sodales tincidunt. Quisque sed felis sed velit posuere feugiat. Nulla facilisi. Suspendisse condimentum volutpat ligula sit amet facilisis. Cras tortor nulla, convallis vel est volutpat, cursus bibendum purus. Donec ac quam odio.',10,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL),(2,1,'dish','Quisque a sagittis velit','Mauris lobortis tellus nisl, vitae interdum nisl eleifend id. In sodales lorem accumsan arcu venenatis , sit amet pharetra libero lobortis. Sed sagittis orci sit amet sodales tincidunt. Quisque sed felis sed velit posuere feugiat. Nulla facilisi. Suspendisse condimentum volutpat ligula sit amet facilisis. Cras tortor nulla, convallis vel est volutpat, cursus bibendum purus. Donec ac quam odio.',10,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL),(3,1,'dessert','Donec volutpat suscipit','Donec nec auctor elit, sit amet convallis libero. Proin dignissim enim ultricies ex venenatis consequat. Aenean eget vestibulum neque. Nunc nisl enim, pellentesque nec imperdiet vel, interdum sit amet metus. Interdum et malesuada fames ac ante ipsum primis in faucibus.',5,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL),(4,1,'dessert','Sed quam ante, porta vitae','Vivamus eget luctus arcu. Suspendisse id dui non arcu vulputate condimentum ut eget nunc. Fusce ultrices magna ut commodo interdum. Cras in velit ullamcorper, semper risus at, volutpat velit. Suspendisse lobortis non nisl sed ultrices. In vestibulum tincidunt est, nec pretium sapien molestie maximus. Quisque eget odio et arcu ullamcorper viverra..',5,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL);
+INSERT INTO `products` VALUES (1,1,'dish','Salade froide de quinoa au céleri','J\'adore cette recette toute simple et l\'alliance du céleri, du persil, du miel et du bouillon de poule. A essayer !',10,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(2,1,'dish','Haricots plats (coco) pimentés','A servir avec du riz, ou du poisson, ou les deux. Attention, les piments oiseaux sont forts et plus on les cuit plus ils sont forts.',10,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(3,1,'dessert','Verrines trois chocolats','Imaginez, 3 chocolats, 3 couches, 3 textures... 3 formes de rêves qui se superposent pour former la gourmandise suprême.',5,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(4,1,'dessert','Tarte poire-chocolat','Un dessert facile facile mais trop trop delicieux.',5,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +226,7 @@ CREATE TABLE `users` (
   `deleted` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_1483A5E9E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,7 +235,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,NULL,NULL,'user-1@gmail.com','$2y$13$K1SWb7dThH180w.S5jkiHeU5FJd.xhjVxx5gsoPT54qLxrm/UR2nu','[\"ROLE_USER\", \"ROLE_CHEF\"]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 00:19:19','2019-06-23 00:19:19',NULL),(2,NULL,NULL,'user-2@gmail.com','$2y$13$KhbyYIa37NlMZtpmgOY19.1tdBI2P7ajCkyRIzxi99PK8Kq6fvOfa','[\"ROLE_USER\"]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 00:19:19','2019-06-23 00:19:19',NULL),(3,NULL,NULL,'user-3@gmail.com','$2y$13$pokP0c2yaqCMqkr.7Rvy5.6uRz0gvz.uZ2eRLnDhjkcI0U6JTwEGe','[\"ROLE_USER\", \"ROLE_DELIVERY_MAN\"]','available',48.867598,2.38246,2,6,3,6,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL),(4,NULL,NULL,'admin@gmail.com','$2y$13$DuIDUQdYgf9rSkViVkbyTO4Y20UQ7xjLczl4iSPxyQbJXkV65lQdC','[\"ROLE_ADMIN\"]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 00:19:20','2019-06-23 00:19:20',NULL);
+INSERT INTO `users` VALUES (1,NULL,NULL,'chef-1@gmail.com','$2y$13$VVsnImRr9m7EMvEXIqfHfeH.ap/e7eX9oDqy4oceCXcru84Djzu1.','[\"ROLE_USER\", \"ROLE_CHEF\"]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 14:36:44','2019-06-23 14:36:44',NULL),(2,NULL,NULL,'user-1@gmail.com','$2y$13$abtYu4wqgFtJMR7GSzP35O3IYR5BM4YY0ofwkialo/is18PBIgNq.','[\"ROLE_USER\"]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 14:36:44','2019-06-23 14:36:44',NULL),(3,NULL,NULL,'delivery-man-1@gmail.com','$2y$13$jysKYyPeoFH.AcneENWmqex8RgDxk6eZmDFZKk0vNX6XolX1NpgJm','[\"ROLE_USER\", \"ROLE_DELIVERY_MAN\"]','available',48.867598,2.38246,2,6,3,6,'2019-06-23 14:36:45','2019-06-23 14:36:45',NULL),(4,NULL,NULL,'user-2@gmail.com','$2y$13$wT8fjj5D40k17Cvyl4jon.dAkrXEegKe4SR1nnlNcUuo2RTkArUxK','[\"ROLE_USER\"]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 14:36:45','2019-06-23 14:36:45',NULL),(5,NULL,NULL,'delivery-man-2@gmail.com','$2y$13$ZueLJzBmMj5mdeaBfVMR8.I2YHazp8qlczp7MmlRfwEhGGZnXrQl6','[\"ROLE_USER\", \"ROLE_DELIVERY_MAN\"]','available',48.866127,2.339571,2,5,2,5,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL),(6,NULL,NULL,'admin@gmail.com','$2y$13$nRehh3kFNTCXDycbTWxqkOg82H7S.3U0V7D.siVRBodnQ2XJu0vkS','[\"ROLE_ADMIN\"]',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 14:36:46','2019-06-23 14:36:46',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -248,4 +248,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-23  0:19:23
+-- Dump completed on 2019-06-23 14:38:53
