@@ -32,6 +32,7 @@ class CartFixtures extends Fixture implements DependentFixtureInterface
             $entity = new Cart();
 
             foreach ($cart['cart-items'] as $item) {
+                /** @var Item $cartItem */
                 $cartItem = $itemRepository->find($item);
                 $entity->addCartItem($cartItem);
             }
