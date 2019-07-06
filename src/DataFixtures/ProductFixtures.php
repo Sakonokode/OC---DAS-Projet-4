@@ -21,16 +21,21 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
+        $userRep = $manager->getRepository(User::class);
+
         $products = Yaml::parseFile(__DIR__ . '/fixtures/products.yaml');
 
         foreach ($products['products'] as $productRef => $product) {
+
+            $chef = $userRep->find($product['chef']);
 
             if ($product !== null) {
                 $product = $this->instantiate(
                     $product['type'],
                     $product['name'],
                     $product['description'],
-                    $product['price']
+                    $product['price'],
+                    $chef
                 );
 
                 $manager->persist($product);
@@ -45,13 +50,15 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
      * @param string $name
      * @param string $description
      * @param float $price
+     * @param User $chef
      * @return Product
      */
     public function instantiate(
         string $type,
         string $name,
         string $description,
-        float $price
+        float $price,
+        User $chef
     ): Product
     {
         $product = new Product();
@@ -59,8 +66,6 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
         $product->setName($name);
         $product->setDescription($description);
         $product->setPrice($price);
-        /** @var User $chef */
-        $chef = $this->getReference(UserFixtures::CHEF_REFERENCE);
         $product->setChef($chef);
 
         return $product;

@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-class Order
+final class Order
 {
     use EntityTrait;
 

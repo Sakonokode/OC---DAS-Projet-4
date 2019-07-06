@@ -5,7 +5,6 @@ users:
     roles:
       - "ROLE_USER"
       - "ROLE_CHEF"
-    reference: 12345
     status:
     lat:
     lng:
@@ -68,6 +67,19 @@ users:
     password: m3p
     roles:
       - "ROLE_ADMIN"
+    status:
+    lat:
+    lng:
+    dish-total:
+    dish-current:
+    dessert-current:
+    dessert-total:
+  user-6:
+    email: "chef-2@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+      - "ROLE_CHEF"
     status:
     lat:
     lng:

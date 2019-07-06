@@ -15,12 +15,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-class Cart
+final class Cart
 {
     use EntityTrait;
 
     /**
      * @var Item[]|ArrayCollection $cartItems
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Item")
      * @ORM\JoinColumn(name="item_id", referencedColumnName="id")
      */

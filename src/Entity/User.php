@@ -28,10 +28,10 @@ class User implements UserInterface, EquatableInterface
     protected $firstName;
 
     /**
-     * @var null|string $surname
+     * @var null|string $lastName
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected $surname;
+    protected $lastName;
 
     /**
      * @var null|string $email
@@ -99,15 +99,21 @@ class User implements UserInterface, EquatableInterface
     private $dessertTotalStock;
 
     /**
+     * @var null|string $address
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $address;
+
+    /**
      * @param string|null $firstName
-     * @param string|null $surname
+     * @param string|null $lastName
      * @param string|null $password
      * @param array $roles
      */
-    public function __construct(string $firstName = null, string $surname = null, string $password = null, array $roles = [])
+    public function __construct(string $firstName = null, string $lastName = null, string $password = null, array $roles = [])
     {
         $this->firstName = $firstName;
-        $this->surname = $surname;
+        $this->lastName = $lastName;
         $this->password = $password;
         $this->roles = $roles;
     }
@@ -131,17 +137,17 @@ class User implements UserInterface, EquatableInterface
     /**
      * @return string|null
      */
-    public function getSurname(): ?string
+    public function getLastName(): ?string
     {
-        return $this->surname;
+        return $this->lastName;
     }
 
     /**
-     * @param string|null $surname
+     * @param string|null $lastName
      */
-    public function setSurname(?string $surname): void
+    public function setLastName(?string $lastName): void
     {
-        $this->surname = $surname;
+        $this->lastName = $lastName;
     }
 
     /**
@@ -302,6 +308,22 @@ class User implements UserInterface, EquatableInterface
     public function setDessertTotalStock(?int $dessertTotalStock): void
     {
         $this->dessertTotalStock = $dessertTotalStock;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string|null $address
+     */
+    public function setAddress(?string $address): void
+    {
+        $this->address = $address;
     }
 
     /**

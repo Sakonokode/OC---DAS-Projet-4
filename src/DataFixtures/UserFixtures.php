@@ -15,10 +15,6 @@ use Symfony\Component\Yaml\Yaml;
  */
 final class UserFixtures extends Fixture
 {
-
-    public const CLIENT_REFERENCE = null;
-    public const CHEF_REFERENCE = null;
-
     /** @var UserPasswordEncoderInterface $passEncoder */
     private $passEncoder;
 
@@ -40,7 +36,6 @@ final class UserFixtures extends Fixture
 
         foreach ($users['users'] as $nickName => $user) {
 
-            $reference = $user['reference'] ?? null;
             $user = $this->instantiate(
                 $user['email'],
                 $user['password'],
@@ -53,12 +48,8 @@ final class UserFixtures extends Fixture
                 $user['dessert-total'],
                 $user['dessert-current']
             );
+
             $manager->persist($user);
-
-            if ($reference !== null) {
-                $this->addReference(self::CHEF_REFERENCE, $user);
-            }
-
         }
 
         $manager->flush();

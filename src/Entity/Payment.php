@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-class Payment
+final class Payment
 {
     use EntityTrait;
 

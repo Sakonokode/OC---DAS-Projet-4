@@ -4,18 +4,22 @@ products:
     name: "Salade froide de quinoa au céleri"
     description: "J'adore cette recette toute simple et l'alliance du céleri, du persil, du miel et du bouillon de poule. A essayer !"
     price: 10
+    chef: 1
   dish2:
     type: "dish"
     name: "Haricots plats (coco) pimentés"
     description: "A servir avec du riz, ou du poisson, ou les deux. Attention, les piments oiseaux sont forts et plus on les cuit plus ils sont forts."
     price: 10
+    chef: 7
   desert1:
     type: "dessert"
     name: "Verrines trois chocolats"
     description: "Imaginez, 3 chocolats, 3 couches, 3 textures... 3 formes de rêves qui se superposent pour former la gourmandise suprême."
     price: 5
+    chef: 1
   desert2:
     type: "dessert"
     name: "Tarte poire-chocolat"
     description: "Un dessert facile facile mais trop trop delicieux."
     price: 5
+    chef: 7

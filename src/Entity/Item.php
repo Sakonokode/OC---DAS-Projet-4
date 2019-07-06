@@ -10,10 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class CartItem
  * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
+ * @ORM\Table(name="items")
  * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-class Item
+final class Item
 {
     use EntityTrait;
 
