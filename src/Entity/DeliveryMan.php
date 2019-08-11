@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class DeliveryMan
  * @package App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\DeliveryManRepository")
+ * @ORM\Table(name="delivery_men")
  * @ORM\HasLifecycleCallbacks()
  */
 class DeliveryMan extends User
