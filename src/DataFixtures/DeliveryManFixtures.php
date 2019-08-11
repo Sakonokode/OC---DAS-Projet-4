@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use App\Entity\User;
+use App\Entity\DeliveryMan;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Yaml\Yaml;
 
-/**
- * @package App\DataFixtures
- */
-final class UserFixtures extends Fixture
+class DeliveryManFixtures extends Fixture
 {
     /** @var UserPasswordEncoderInterface $passEncoder */
     private $passEncoder;
 
     /**
-     * UserFixtures constructor.
+     * DeliveryManFixtures constructor.
      * @param UserPasswordEncoderInterface $passwordEncoder
      */
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
@@ -32,24 +29,24 @@ final class UserFixtures extends Fixture
      */
     public function load(ObjectManager $manager): void
     {
-        $users = Yaml::parseFile(__DIR__ . '/fixtures/users.yaml');
+        $deliveryMen = Yaml::parseFile(__DIR__ . '/fixtures/delivery-men.yaml');
 
-        foreach ($users['users'] as $nickName => $user) {
+        foreach ($deliveryMen['delivery-men'] as $nickName => $deliveryMan) {
 
-            $user = $this->instantiate(
-                $user['email'],
-                $user['password'],
-                $user['roles'],
-                $user['status'],
-                $user['lat'],
-                $user['lng'],
-                $user['dish-total'],
-                $user['dish-current'],
-                $user['dessert-total'],
-                $user['dessert-current']
+            $deliveryMan = $this->instantiate(
+                $deliveryMan['email'],
+                $deliveryMan['password'],
+                $deliveryMan['roles'],
+                $deliveryMan['status'],
+                $deliveryMan['lat'],
+                $deliveryMan['lng'],
+                $deliveryMan['dish-total'],
+                $deliveryMan['dish-current'],
+                $deliveryMan['dessert-current'],
+                $deliveryMan['dessert-total']
             );
 
-            $manager->persist($user);
+            $manager->persist($deliveryMan);
         }
 
         $manager->flush();
@@ -66,7 +63,7 @@ final class UserFixtures extends Fixture
      * @param int|null $dishCurrentStock
      * @param int|null $dessertTotalStock
      * @param int|null $dessertCurrentStock
-     * @return User
+     * @return DeliveryMan
      */
     public function instantiate(
         string $email = null,
@@ -79,20 +76,20 @@ final class UserFixtures extends Fixture
         int $dishCurrentStock = null,
         int $dessertTotalStock = null,
         int $dessertCurrentStock = null
-    ): User
+    ): DeliveryMan
     {
-        $user = new User();
-        $user->setEmail($email);
-        $user->setPassword($this->passEncoder->encodePassword($user, $password));
-        $user->setRoles($roles);
-        $user->setStatus($status);
-        $user->setLat($lat);
-        $user->setLng($lng);
-        $user->setDishTotalStock($dishTotalStock);
-        $user->setDishCurrentStock($dishCurrentStock);
-        $user->setDessertTotalStock($dessertTotalStock);
-        $user->setDessertCurrentStock($dessertCurrentStock);
+        $deliveryMan = new DeliveryMan();
+        $deliveryMan->setEmail($email);
+        $deliveryMan->setPassword($this->passEncoder->encodePassword($deliveryMan, $password));
+        $deliveryMan->setRoles($roles);
+        $deliveryMan->setStatus($status);
+        $deliveryMan->setLat($lat);
+        $deliveryMan->setLng($lng);
+        $deliveryMan->setDishTotalStock($dishTotalStock);
+        $deliveryMan->setDishCurrentStock($dishCurrentStock);
+        $deliveryMan->setDessertTotalStock($dessertTotalStock);
+        $deliveryMan->setDessertCurrentStock($dessertCurrentStock);
 
-        return $user;
+        return $deliveryMan;
     }
 }

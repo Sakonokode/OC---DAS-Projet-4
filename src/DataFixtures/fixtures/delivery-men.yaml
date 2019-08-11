@@ -1,0 +1,27 @@
+delivery-men:
+  delivery-man-1:
+    email: "delivery-man-1@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+      - "ROLE_DELIVERY_MAN"
+    status: "available"
+    lat: 48.867598
+    lng: 2.382460
+    dish-total: 6
+    dish-current: 2
+    dessert-current: 3
+    dessert-total: 6
+  delivery-man-2:
+    email: "delivery-man-2@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+      - "ROLE_DELIVERY_MAN"
+    status: "available"
+    lat: 48.866127
+    lng: 2.339571
+    dish-total: 5
+    dish-current: 2
+    dessert-current: 2
+    dessert-total: 5

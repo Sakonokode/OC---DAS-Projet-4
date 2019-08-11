@@ -10,7 +10,7 @@ products:
     name: "Haricots plats (coco) pimentés"
     description: "A servir avec du riz, ou du poisson, ou les deux. Attention, les piments oiseaux sont forts et plus on les cuit plus ils sont forts."
     price: 10
-    chef: 7
+    chef: 2
   desert1:
     type: "dessert"
     name: "Verrines trois chocolats"
@@ -22,4 +22,4 @@ products:
     name: "Tarte poire-chocolat"
     description: "Un dessert facile facile mais trop trop delicieux."
     price: 5
-    chef: 7
+    chef: 2

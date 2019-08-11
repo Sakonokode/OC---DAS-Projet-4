@@ -1,0 +1,13 @@
+chefs:
+  chef-1:
+    email: "chef-1@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+      - "ROLE_CHEF"
+  chef-2:
+    email: "chef-2@gmail.com"
+    password: m3p
+    roles:
+      - "ROLE_USER"
+      - "ROLE_CHEF"

@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-final class Cart
+class Cart
 {
     use EntityTrait;
 

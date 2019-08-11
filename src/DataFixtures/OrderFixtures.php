@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
+use App\Entity\Client;
+use App\Entity\DeliveryMan;
 use App\Entity\Order;
 use App\Entity\Payment;
-use App\Entity\User;
 use App\Entity\Cart;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -26,22 +27,23 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        $userRepository = $manager->getRepository(User::class);
+        $clientRepository = $manager->getRepository(Client::class);
         $paymentRepository = $manager->getRepository(Payment::class);
         $cartRepository = $manager->getRepository(Cart::class);
+        $deliveryManRepo = $manager->getRepository(DeliveryMan::class);
 
         $orders = Yaml::parseFile(__DIR__ . '/fixtures/orders.yaml');
 
         foreach ($orders['orders'] as $orderRef => $order) {
 
-            $client = $userRepository->find($order['user']);
-            $deliveryMan = $userRepository->find($order['delivery-man']);
+            $client = $clientRepository->find($order['client']);
+            $deliveryMan = $deliveryManRepo->find($order['delivery-man']);
             $payment = $paymentRepository->find($order['payment']);
             $cart = $cartRepository->find($order['cart']);
 
             $entity = new Order();
             $entity->setDeliveryAddress($order['delivery-address']);
-            $entity->setUser($client);
+            $entity->setClient($client);
             $entity->setDeliveryMan($deliveryMan);
             $entity->setPayment($payment);
             $entity->setCart($cart);
@@ -62,7 +64,9 @@ class OrderFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            UserFixtures::class,
+            DeliveryManFixtures::class,
+            ChefFixtures::class,
+            ClientFixtures::class,
             ProductFixtures::class,
             ItemFixtures::class,
             PaymentFixtures::class,

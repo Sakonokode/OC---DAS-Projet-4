@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-final class Order
+class Order
 {
     use EntityTrait;
 
@@ -25,14 +25,14 @@ final class Order
     private $deliveryAddress;
 
     /**
-     * @var null|User $user
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @var null|Client $client
+     * @ORM\ManyToOne(targetEntity="App\Entity\Client")
      */
-    private $user;
+    private $client;
 
     /**
-     * @var null|User $deliveryMan
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @var null|DeliveryMan $deliveryMan
+     * @ORM\ManyToOne(targetEntity="App\Entity\DeliveryMan")
      */
     private $deliveryMan;
 
@@ -73,33 +73,33 @@ final class Order
     }
 
     /**
-     * @return User|null
+     * @return Client|null
      */
-    public function getUser(): ?User
+    public function getClient(): ?Client
     {
-        return $this->user;
+        return $this->client;
     }
 
     /**
-     * @param User|null $user
+     * @param Client|null $client
      */
-    public function setUser(?User $user): void
+    public function setClient(?Client $client): void
     {
-        $this->user = $user;
+        $this->client = $client;
     }
 
     /**
-     * @return User|null
+     * @return DeliveryMan|null
      */
-    public function getDeliveryMan(): ?User
+    public function getDeliveryMan(): ?DeliveryMan
     {
         return $this->deliveryMan;
     }
 
     /**
-     * @param User|null $deliveryMan
+     * @param DeliveryMan|null $deliveryMan
      */
-    public function setDeliveryMan(?User $deliveryMan): void
+    public function setDeliveryMan(?DeliveryMan $deliveryMan): void
     {
         $this->deliveryMan = $deliveryMan;
     }

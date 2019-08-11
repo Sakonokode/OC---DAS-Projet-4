@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks()
  * @package App\Entity
  */
-final class Item
+class Item
 {
     use EntityTrait;
 

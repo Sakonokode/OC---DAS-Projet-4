@@ -23,7 +23,7 @@
         {% for order in orders %}
             <tr>
                 <td>{{ order.id }}</td>
-                <td>{{ order.user.email }}</td>
+                <td>{{ order.client.email }}</td>
                 <td>{{ order.deliveryAddress }}</td>
                 <td>
                     {% for item in order.cart.cartItems %}

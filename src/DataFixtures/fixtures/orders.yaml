@@ -1,43 +1,43 @@
 orders:
   order1:
     delivery-address: "119 Avenue de Clichy, 75017 Paris"
-    user: 2
-    delivery-man: 3
+    client: 3
+    delivery-man: 6
     payment: 1
     cart: 1
     status: "Order Complete"
   order2:
     delivery-address: "23 Rue Damrémont, 75018 Paris"
-    user: 2
-    delivery-man: 5
+    client: 4
+    delivery-man: 7
     payment: 2
     cart: 2
     status: "Order Complete"
   order3:
     delivery-address: "2 Rue Ronsard, 75018 Paris"
-    user: 2
-    delivery-man: 5
+    client: 5
+    delivery-man: 6
     payment: 3
     cart: 3
     status: "Order Complete"
   order4:
     delivery-address: "12 Rue de la Fidélité, 75010 Paris"
-    user: 4
-    delivery-man: 3
+    client: 3
+    delivery-man: 7
     payment: 4
     cart: 4
     status: "Order Complete"
   order5:
     delivery-address: "1 Boulevard de Strasbourg, 75010 Paris"
-    user: 4
-    delivery-man: 3
+    client: 4
+    delivery-man: 6
     payment: 5
     cart: 5
     status: "Order Complete"
   order6:
     delivery-address: "10 Rue Hérold, 75001 Paris"
-    user: 4
-    delivery-man: 3
+    client: 5
+    delivery-man: 7
     payment: 6
     cart: 6
     status: "Order Complete"

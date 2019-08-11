@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Traits\EntityTrait;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,8 +38,8 @@ class Product
     private $description;
 
     /**
-     * @var null|User $chef
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @var null|Chef $chef
+     * @ORM\ManyToOne(targetEntity="App\Entity\Chef")
      */
     private $chef;
 
@@ -47,6 +48,18 @@ class Product
      * @ORM\Column(type="float")
      */
     private $price;
+
+    /**
+     * @var null|int $availableStock
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $availableStock;
+
+    /**
+     * @var null|DateTime $date
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date;
 
     /**
      * @return string|null
@@ -97,17 +110,17 @@ class Product
     }
 
     /**
-     * @return User|null
+     * @return Chef|null
      */
-    public function getChef(): ?User
+    public function getChef(): ?Chef
     {
         return $this->chef;
     }
 
     /**
-     * @param User|null $chef
+     * @param Chef|null $chef
      */
-    public function setChef(?User $chef): void
+    public function setChef(?Chef $chef): void
     {
         $this->chef = $chef;
     }
@@ -126,5 +139,37 @@ class Product
     public function setPrice(?float $price): void
     {
         $this->price = $price;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getAvailableStock(): ?int
+    {
+        return $this->availableStock;
+    }
+
+    /**
+     * @param int|null $availableStock
+     */
+    public function setAvailableStock(?int $availableStock): void
+    {
+        $this->availableStock = $availableStock;
+    }
+
+    /**
+     * @return DateTime|null
+     */
+    public function getDate(): ?DateTime
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param DateTime|null $date
+     */
+    public function setDate(?DateTime $date): void
+    {
+        $this->date = $date;
     }
 }

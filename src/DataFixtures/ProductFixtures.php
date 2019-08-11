@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
+use App\Entity\Chef;
 use App\Entity\User;
 use App\Entity\Product;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -21,13 +22,13 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
      */
     public function load(ObjectManager $manager): void
     {
-        $userRep = $manager->getRepository(User::class);
+        $chefRep = $manager->getRepository(Chef::class);
 
         $products = Yaml::parseFile(__DIR__ . '/fixtures/products.yaml');
 
         foreach ($products['products'] as $productRef => $product) {
 
-            $chef = $userRep->find($product['chef']);
+            $chef = $chefRep->find($product['chef']);
 
             if ($product !== null) {
                 $product = $this->instantiate(
@@ -50,7 +51,7 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
      * @param string $name
      * @param string $description
      * @param float $price
-     * @param User $chef
+     * @param Chef $chef
      * @return Product
      */
     public function instantiate(
@@ -58,7 +59,7 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
         string $name,
         string $description,
         float $price,
-        User $chef
+        Chef $chef
     ): Product
     {
         $product = new Product();
@@ -74,7 +75,9 @@ final class ProductFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies(): array
     {
         return [
-            UserFixtures::class,
+            DeliveryManFixtures::class,
+            ClientFixtures::class,
+            ChefFixtures::class,
         ];
     }
 }
